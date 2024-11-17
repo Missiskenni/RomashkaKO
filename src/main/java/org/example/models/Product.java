@@ -1,20 +1,30 @@
 package org.example.models;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+@Entity
+@Table(name = "products")
 public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @NotBlank(message = "Название товара обязательно")
     @Size(max = 255, message = "Название товара не должно превышать 255 символов")
+    @Column(nullable = false, length = 255)
     private String name;
 
     @Size(max = 4096, message = "Описание товара не должно превышать 4096 символов")
+    @Column(length = 4096)
     private String description;
 
     @Min(value = 0, message = "Цена товара не может быть меньше 0")
+    @Column(nullable = false, columnDefinition = "double precision default 0.0") // Значение по умолчанию
     private double price = 0;
 
+    @Column(nullable = false, columnDefinition = "boolean default false") // Значение по умолчанию
     private boolean inStock = false;
 
     // Геттеры и сеттеры

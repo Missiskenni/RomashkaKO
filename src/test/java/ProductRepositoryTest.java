@@ -1,19 +1,22 @@
+import org.example.Main;
 import org.example.models.Product;
 import org.example.repositories.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest(classes = Main.class)
 public class ProductRepositoryTest {
+
+    @Autowired
     private ProductRepository repository;
 
-    @BeforeEach
-    void setUp() {
-        repository = new ProductRepository();
-    }
 
     @Test
     void testSaveAndFindById() {
@@ -50,7 +53,7 @@ public class ProductRepositoryTest {
         product.setName("Test Product");
         Product savedProduct = repository.save(product);
 
-        repository.delete(savedProduct.getId());
+        repository.deleteById(savedProduct.getId());
         assertTrue(repository.findById(savedProduct.getId()).isEmpty());
     }
 }

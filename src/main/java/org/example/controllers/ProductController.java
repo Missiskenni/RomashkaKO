@@ -50,7 +50,7 @@ public class ProductController {
     // Удалить товар по ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable String id) {
-        repository.delete(id);
+        repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 

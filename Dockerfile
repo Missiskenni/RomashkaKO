@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Копируем файл сборки Maven
-COPY target/RomashkaKO-1.0-SNAPSHOT.jar app.jar
+COPY target/RomaskaKO-1.0-SNAPSHOT.jar app.jar
 
 # Указываем команду запуска
 ENTRYPOINT ["java", "-jar", "app.jar"]

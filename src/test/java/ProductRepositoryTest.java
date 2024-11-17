@@ -6,12 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = Main.class)
+@Transactional
 public class ProductRepositoryTest {
 
     @Autowired
@@ -36,6 +38,9 @@ public class ProductRepositoryTest {
 
     @Test
     void testFindAll() {
+
+        int curSize = repository.findAll().size();
+
         Product product1 = new Product();
         product1.setName("Product 1");
         repository.save(product1);
@@ -44,7 +49,7 @@ public class ProductRepositoryTest {
         product2.setName("Product 2");
         repository.save(product2);
 
-        assertEquals(2, repository.findAll().size());
+        assertEquals(curSize+2, repository.findAll().size());
     }
 
     @Test

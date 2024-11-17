@@ -3,7 +3,7 @@ package org.example.models;
 import jakarta.validation.constraints.*;
 
 public class Product {
-    private Long id;
+    private String id;
 
     @NotBlank(message = "Название товара обязательно")
     @Size(max = 255, message = "Название товара не должно превышать 255 символов")
@@ -18,11 +18,11 @@ public class Product {
     private boolean inStock = false;
 
     // Геттеры и сеттеры
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

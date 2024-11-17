@@ -25,7 +25,7 @@ public class ProductController {
 
     // Получить товар по ID
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable Long id) {
+    public ResponseEntity<Product> getProduct(@PathVariable String id) {
         return repository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -39,7 +39,7 @@ public class ProductController {
 
     // Обновить существующий товар
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Validated @RequestBody Product product) {
+    public ResponseEntity<Product> updateProduct(@PathVariable String id, @Validated @RequestBody Product product) {
         if (!repository.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
         }
@@ -49,7 +49,7 @@ public class ProductController {
 
     // Удалить товар по ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteProduct(@PathVariable String id) {
         repository.delete(id);
         return ResponseEntity.noContent().build();
     }

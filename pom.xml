@@ -56,6 +56,13 @@
             <artifactId>postgresql</artifactId>
         </dependency>
 
+        <!-- Драйвер тестовой базы данных -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <!-- Плагины сборки -->

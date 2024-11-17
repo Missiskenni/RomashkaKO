@@ -7,6 +7,16 @@ import jakarta.validation.constraints.*;
 @Table(name = "products")
 public class Product {
 
+    public Product() {}
+
+    public Product(String id, String name, String description, double price, boolean inStock) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.inStock = inStock;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
